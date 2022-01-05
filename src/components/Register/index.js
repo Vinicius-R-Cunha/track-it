@@ -3,33 +3,36 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import logo from '../../assets/logo.png';
-import { Container, StyledButton } from './style.js';
+import { Container, StyledButton } from '../Login/style.js';
 
-export default function Login() {
+export default function Register() {
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [image, setImage] = useState('');
     const [password, setPassword] = useState('');
 
     function handleSubmit(e) {
         e.preventDefault();
         setLoading('loading');
 
-        const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login',
+        const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up',
             {
                 email,
+                name,
+                image,
                 password
             });
 
         promise.then(() => {
             setLoading();
-            navigate('/hoje');
+            navigate('/');
         });
-
         promise.catch(() => {
             setLoading();
-            alert('Usuário e/ou senha incorretos');
+            alert('Preencha as informações corretamente');
         });
     }
 
@@ -38,6 +41,8 @@ export default function Login() {
             <img src={logo} alt="" />
             <input type="email" placeholder='email' onChange={e => setEmail(e.target.value)} disabled={loading} />
             <input type="password" placeholder='senha' onChange={e => setPassword(e.target.value)} disabled={loading} />
+            <input type="text" placeholder='nome' onChange={e => setName(e.target.value)} disabled={loading} />
+            <input type="text" placeholder='foto' onChange={e => setImage(e.target.value)} disabled={loading} />
             <StyledButton disabled={loading} onClick={(e) => handleSubmit(e)}>
                 {loading ?
                     <Loader
@@ -46,9 +51,9 @@ export default function Login() {
                         height={13}
                         width={51}
                         timeout={3000}
-                    /> : 'Entrar'}
+                    /> : 'Cadastrar'}
             </StyledButton>
-            <Link to={'/cadastro'}>Não tem uma conta? Cadastre-se!</Link>
+            <Link to={'/'}>Já tem uma conta? Faça login!</Link>
         </Container>
     );
 }
