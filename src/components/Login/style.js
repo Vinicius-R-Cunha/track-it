@@ -8,6 +8,8 @@ const Container = styled.form`
     align-items: center;
 
     padding-top: 68px;
+    
+    background: #FFFFFF;
 
     img {
         margin-bottom: 33px;

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Container, StyledButton } from './style.js';
 import Loader from 'react-loader-spinner';
 import logo from '../../assets/logo.png';
-import { Container, StyledButton } from './style.js';
 
-export default function Login() {
+export default function Login({ setProfile }) {
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -22,7 +22,8 @@ export default function Login() {
                 password
             });
 
-        promise.then(() => {
+        promise.then(answer => {
+            setProfile(answer.data)
             setLoading();
             navigate('/hoje');
         });
