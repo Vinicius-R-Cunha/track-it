@@ -32,23 +32,7 @@ const Container = styled.form`
         }
     }
 
-    button {
-        width: 303px;
-        height: 45px;
-
-        border: hidden;
-
-        background: #52B6FF;
-        border-radius: 5px;
-
-        font-size: 21px;
-        line-height: 26px;
-        color: #FFFFFF;
-
-        margin-bottom: 25px;
-    }
-
-    p {
+    Link {
         font-size: 14px;
         line-height: 17px;
         text-align: center;
@@ -57,4 +41,21 @@ const Container = styled.form`
     }
 `
 
-export { Container };
+const StyledButton = styled.button`
+    width: 303px;
+    height: 45px;
+
+    border: hidden;
+
+    background: #52B6FF;
+    opacity: ${props => !props.disabled ? 1 : 0.7};
+    border-radius: 5px;
+
+    font-size: 21px;
+    line-height: 26px;
+    color: #FFFFFF;
+
+    margin-bottom: 25px;
+`
+
+export { Container, StyledButton };
