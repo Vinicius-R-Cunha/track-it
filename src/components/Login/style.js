@@ -34,7 +34,7 @@ const Container = styled.form`
         }
     }
 
-    Link {
+    a {
         font-size: 14px;
         line-height: 17px;
         text-align: center;

@@ -9,8 +9,8 @@ export default function Login({ setProfile }) {
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('abc@email.com');
+    const [password, setPassword] = useState('123');
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -37,8 +37,8 @@ export default function Login({ setProfile }) {
     return (
         <Container>
             <img src={logo} alt="" />
-            <input type="email" placeholder='email' onChange={e => setEmail(e.target.value)} disabled={loading} />
-            <input type="password" placeholder='senha' onChange={e => setPassword(e.target.value)} disabled={loading} />
+            <input type="email" placeholder='email' onChange={e => setEmail(e.target.value)} disabled={loading} value={email} />
+            <input type="password" placeholder='senha' onChange={e => setPassword(e.target.value)} disabled={loading} value={password} />
             <StyledButton disabled={loading} onClick={(e) => handleSubmit(e)}>
                 {loading ?
                     <Loader
