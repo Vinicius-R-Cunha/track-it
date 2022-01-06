@@ -8,7 +8,7 @@ export default function Menu() {
             <Link to={'/hoje'}>
                 <div>Hoje</div>
             </Link>
-            <Link to={'/hoje'}>Histórico</Link>
+            <Link to={'/historico'}>Histórico</Link>
         </Nav>
     );
 }
