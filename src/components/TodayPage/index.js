@@ -10,9 +10,6 @@ export default function TodayPage() {
     return (
         <>
             <Header />
-
-
-
             <Menu />
         </>
     );

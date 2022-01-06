@@ -13,13 +13,15 @@ const Nav = styled.nav`
     box-sizing: border-box;
     padding: 0 36px;
 
-    font-size: 18px;
-    line-height: 22px;
-    color: #52B6FF;
-
     position: fixed;
     bottom: 0;
     z-index: 1;
+
+    a {
+        font-size: 18px;
+        line-height: 22px;
+        color: #52B6FF;
+    }
 
     div {
         width: 91px;
