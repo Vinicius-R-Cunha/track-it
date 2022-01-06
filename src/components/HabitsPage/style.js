@@ -29,6 +29,8 @@ const MyHabits = styled.div`
     box-sizing: border-box;
     padding: 0 18px;
 
+    margin-bottom: 20px;
+
     p {
         font-size: 23px;
         color: #126BA5;
@@ -61,10 +63,10 @@ const HabitCreator = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    margin-top: 20px;
-    
+        
     border-radius: 7px;
+
+    margin-bottom: 20px;
 
     input {
         width: 90%;
@@ -156,7 +158,7 @@ const Habit = styled.div`
     width: 90%;
     height: 91px;
     
-    margin-top: 20px;
+    margin-bottom: 10px;
 
     display: flex;
     flex-direction: column;

@@ -10,17 +10,17 @@ const TodayDiv = styled.div`
 
         margin-bottom: 3px;
     }
-
-    .progress {
-        font-size: 18px;
-        line-height: 22px;
-        color: #BABABA;
-
-        margin-bottom: 29px;
-    }
 `
+const Progress = styled.p`
+    font-size: 18px;
+    line-height: 22px;
+    color: ${props => props.progress > 0 ? '#8FC549' : '#BABABA'};
+    
+    margin-bottom: 29px;
+`
+
 const Task = styled.div`
-    width: 340px;
+    width: 100%;
     height: 94px;
 
     display: flex;
@@ -49,6 +49,10 @@ const Task = styled.div`
         color: #666666;
 
         margin-top: 7px;
+
+        .green-text {
+            color: #8FC549;
+        }
     }
 `
 
@@ -62,7 +66,7 @@ const CheckBox = styled.div`
     justify-content: center;
     align-items: center;
 
-    background: #EBEBEB;
+    background: ${props => props.check ? "#8FC549" : "#EBEBEB"};
 
     border: 1px solid #E7E7E7;
 
@@ -70,4 +74,4 @@ const CheckBox = styled.div`
     border-radius: 5px;
 `
 
-export { TodayDiv, Task, CheckBox }
+export { TodayDiv, Task, CheckBox, Progress }

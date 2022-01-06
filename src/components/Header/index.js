@@ -4,7 +4,7 @@ import { useContext } from 'react';
 
 export default function Header() {
 
-    const profile = useContext(MyContext);
+    const { profile } = useContext(MyContext);
 
     return (
         <CustomHeader>

@@ -1,12 +1,14 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, StyledButton } from './style.js';
 import Loader from 'react-loader-spinner';
 import logo from '../../assets/logo.png';
+import MyContext from '../../MyContext.js';
 
-export default function Login({ setProfile }) {
+export default function Login() {
 
+    const { setProfile } = useContext(MyContext);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('abc@email.com');
