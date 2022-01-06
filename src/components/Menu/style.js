@@ -23,22 +23,19 @@ const Nav = styled.nav`
         color: #52B6FF;
     }
 
-    div {
+    .circle-div {
         width: 91px;
         height: 91px;
-        background: #52B6FF;
 
         display: flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
 
         position: fixed;
         bottom: 10px;
         right: 0;
         left: 0;
         margin: 0 auto;
-
-        border-radius: 50%;
 
         color: #FFFFFF;
     }

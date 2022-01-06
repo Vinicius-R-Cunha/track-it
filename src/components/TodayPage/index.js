@@ -19,9 +19,8 @@ export default function TodayPage() {
         'Sexta',
         'Sábado'
     ]
-    const { profile } = useContext(MyContext);
+    const { profile, progress, setProgress } = useContext(MyContext);
     const [tasksArray, setTasksArray] = useState();
-    const [progress, setProgress] = useState(0);
 
     const config = {
         headers: { Authorization: `Bearer ${profile.token}` }
