@@ -12,9 +12,10 @@ import './styles/style.css';
 export default function App() {
 
     const [profile, setProfile] = useState();
+    const [progress, setProgress] = useState(0);
 
     return (
-        <MyContext.Provider value={{ profile, setProfile }}>
+        <MyContext.Provider value={{ profile, setProfile, progress, setProgress }}>
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Login />} />
