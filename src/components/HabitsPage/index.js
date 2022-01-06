@@ -1,11 +1,11 @@
 import axios from "axios";
+import { useState } from "react/cjs/react.development";
 import { useContext, useEffect } from "react";
+import Loader from "react-loader-spinner";
 import MyContext from "../../MyContext";
-import { HabitsDiv, MyHabits, HabitCreator, DayBox, Habit, DaySelection } from "./style";
 import Header from "../Header";
 import Menu from "../Menu";
-import { useState } from "react/cjs/react.development";
-import Loader from "react-loader-spinner";
+import { HabitsDiv, MyHabits, HabitCreator, DayBox, Habit, DaySelection } from "./style";
 
 export default function HabitsPage() {
 
@@ -23,7 +23,6 @@ export default function HabitsPage() {
         { day: 'S', selected: false }
     ]);
 
-
     const profile = useContext(MyContext);
 
     const config = {
@@ -34,7 +33,7 @@ export default function HabitsPage() {
         const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
         promise.then(answer => setHabitsArray(answer.data));
 
-    }, [config]);
+    }, []);
 
     function handleSelection(clickedObject) {
         if (!loading) {
@@ -55,6 +54,7 @@ export default function HabitsPage() {
             currentObj.selected = false;
             return currentObj;
         }));
+        setLoading(false);
     }
 
     function makeDaysArray() {
@@ -75,12 +75,10 @@ export default function HabitsPage() {
         postHabit.then(() => {
             setShowCreation(false);
             resetNameWeek();
-            setLoading(false);
         });
         postHabit.catch(() => {
             alert('preencha o hábito');
             resetNameWeek();
-            setLoading(false);
         });
     }
 
@@ -121,8 +119,8 @@ export default function HabitsPage() {
                             )}
                         </DaySelection>
                         <div className="action-buttons">
-                            <button className={loading && 'opacity'} onClick={() => setShowCreation(false)}>Cancelar</button>
-                            <button className={loading && 'opacity'} onClick={saveHabit}>{loading ?
+                            <button className={loading ? 'opacity' : ''} onClick={() => setShowCreation(false)}>Cancelar</button>
+                            <button className={loading ? 'opacity' : ''} onClick={saveHabit}>{loading ?
                                 <Loader
                                     type="ThreeDots"
                                     color="#FFFFFF"

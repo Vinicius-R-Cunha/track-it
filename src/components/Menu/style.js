@@ -38,7 +38,7 @@ const Nav = styled.nav`
         left: 0;
         margin: 0 auto;
 
-        border-radius: 50px;
+        border-radius: 50%;
 
         color: #FFFFFF;
     }
