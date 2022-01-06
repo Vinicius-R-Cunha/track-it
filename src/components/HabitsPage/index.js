@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useState } from "react/cjs/react.development";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import { render } from "react-dom";
 import Loader from "react-loader-spinner";
 import MyContext from "../../MyContext";
 import Header from "../Header";
@@ -9,6 +9,7 @@ import { HabitsDiv, MyHabits, HabitCreator, DayBox, Habit, DaySelection } from "
 
 export default function HabitsPage() {
 
+    const { profile } = useContext(MyContext);
     const [name, setName] = useState('');
     const [habitsArray, setHabitsArray] = useState();
     const [showCreation, setShowCreation] = useState(false);
@@ -23,17 +24,18 @@ export default function HabitsPage() {
         { day: 'S', selected: false }
     ]);
 
-    const profile = useContext(MyContext);
-
     const config = {
         headers: { Authorization: `Bearer ${profile.token}` }
     }
 
     useEffect(() => {
+        renderPage();
+    }, []);
+
+    function renderPage() {
         const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
         promise.then(answer => setHabitsArray(answer.data));
-
-    }, []);
+    }
 
     function handleSelection(clickedObject) {
         if (!loading) {
@@ -75,23 +77,26 @@ export default function HabitsPage() {
         postHabit.then(() => {
             setShowCreation(false);
             resetNameWeek();
+            renderPage();
         });
         postHabit.catch(() => {
             alert('preencha o hábito');
             resetNameWeek();
+            renderPage();
         });
     }
 
     function deleteHabit(id) {
         if (window.confirm("Quer mesmo deletar esse hábito?")) {
             const deletePromise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);
+            deletePromise.then(() => renderPage());
             deletePromise.catch(answer => console.log(answer));
         }
     }
 
     if (!habitsArray) {
         return (
-            <h1>Carregando</h1>
+            <></>
         );
     }
 
