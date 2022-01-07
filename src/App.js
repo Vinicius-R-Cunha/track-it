@@ -11,7 +11,9 @@ import './styles/style.css';
 
 export default function App() {
 
-    const [profile, setProfile] = useState();
+    const savedProfile = JSON.parse(localStorage.getItem('Saved Profile'));
+
+    const [profile, setProfile] = useState(savedProfile);
     const [progress, setProgress] = useState(0);
 
     return (
