@@ -53,7 +53,7 @@ export default function Register() {
                         timeout={3000}
                     /> : 'Cadastrar'}
             </StyledButton>
-            <Link to={'/'}>Já tem uma conta? Faça login!</Link>
+            <Link to={loading ? '' : '/'}>Já tem uma conta? Faça login!</Link>
         </Container>
     );
 }

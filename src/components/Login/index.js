@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, StyledButton } from './style.js';
 import Loader from 'react-loader-spinner';
@@ -8,11 +8,18 @@ import MyContext from '../../MyContext.js';
 
 export default function Login() {
 
-    const { setProfile } = useContext(MyContext);
-    const navigate = useNavigate();
+    const { profile, setProfile } = useContext(MyContext);
     const [loading, setLoading] = useState(false);
-    const [email, setEmail] = useState('abc@email.com');
-    const [password, setPassword] = useState('123');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (profile !== null) {
+            navigate('/hoje');
+        }
+    }, []);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -25,7 +32,8 @@ export default function Login() {
             });
 
         promise.then(answer => {
-            setProfile(answer.data)
+            setProfile(answer.data);
+            localStorage.setItem('Saved Profile', JSON.stringify(answer.data));
             setLoading();
             navigate('/hoje');
         });
@@ -51,7 +59,7 @@ export default function Login() {
                         timeout={3000}
                     /> : 'Entrar'}
             </StyledButton>
-            <Link to={'/cadastro'}>Não tem uma conta? Cadastre-se!</Link>
+            <Link to={loading ? '' : '/cadastro'}>Não tem uma conta? Cadastre-se!</Link>
         </Container>
     );
 }
