@@ -12,24 +12,36 @@ const CustomHeader = styled.header`
     justify-content: space-between;
 
     box-sizing: border-box;
-    padding-left: 18px;
     padding-right: 18px;
 
     position: fixed;
     top: 0;
     z-index: 1;
 
-    p {
-        font-family: Playball;
-        font-size: 39px;
-        line-height: 49px;
-        color: #FFFFFF;
+    
+    div {
+        display: flex;
+        align-items: center;
+        
+        p {
+            font-family: Playball;
+            font-size: 39px;
+            line-height: 49px;
+            color: #FFFFFF;
+        }
+        ion-icon {
+            font-size: 30px;
+            color: #FFFFFF;
+
+            margin: 0 12px;
+        }
+
     }
 
     img {
         width: 51px;
         height: 51px;
-
+        
         border-radius: 98.5px;
     }
 
