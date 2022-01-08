@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 import MyContext from "../../MyContext";
 import Header from "../Header";
 import Menu from "../Menu";
 import { HabitsDiv, MyHabits, HabitCreator, DayBox, Habit, DaySelection } from "./style";
 
 export default function HabitsPage() {
+
+    const navigate = useNavigate();
 
     const { profile } = useContext(MyContext);
     const [name, setName] = useState('');
@@ -23,16 +26,19 @@ export default function HabitsPage() {
         { day: 'S', selected: false }
     ]);
 
-    const config = {
-        headers: { Authorization: `Bearer ${profile.token}` }
-    }
-
     useEffect(() => {
-        renderPage();
+        if (profile !== null) {
+            renderPage();
+        } else {
+            navigate('/');
+        }
     }, []);
 
     function renderPage() {
-        const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
+        const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits",
+            {
+                headers: { Authorization: `Bearer ${profile.token}` }
+            });
         promise.then(answer => setHabitsArray(answer.data));
     }
 
@@ -72,7 +78,10 @@ export default function HabitsPage() {
         setLoading(true);
 
         const days = makeDaysArray();
-        const postHabit = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", { name, days }, config);
+        const postHabit = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", { name, days },
+            {
+                headers: { Authorization: `Bearer ${profile.token}` }
+            });
         postHabit.then(() => {
             setShowCreation(false);
             resetNameWeek();
@@ -87,7 +96,10 @@ export default function HabitsPage() {
 
     function deleteHabit(id) {
         if (window.confirm("Quer mesmo deletar esse hábito?")) {
-            const deletePromise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);
+            const deletePromise = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`,
+                {
+                    headers: { Authorization: `Bearer ${profile.token}` }
+                });
             deletePromise.then(() => renderPage());
             deletePromise.catch(answer => console.log(answer));
         }

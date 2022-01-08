@@ -6,8 +6,11 @@ import Menu from "../Menu";
 import { TodayDiv, Task, CheckBox, Progress } from "./style";
 import dayjs from "dayjs";
 import check from "../../assets/Vector.png";
+import { useNavigate } from "react-router-dom";
 
 export default function TodayPage() {
+
+    const navigate = useNavigate();
 
     const weekdays = [
         'Domingo',
@@ -21,16 +24,19 @@ export default function TodayPage() {
     const { profile, progress } = useContext(MyContext);
     const [tasksArray, setTasksArray] = useState();
 
-    const config = {
-        headers: { Authorization: `Bearer ${profile.token}` }
-    }
-
     useEffect(() => {
-        renderPage();
+        if (profile !== null) {
+            renderPage();
+        } else {
+            navigate('/');
+        }
     }, []);
 
     function renderPage() {
-        const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config);
+        const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today",
+            {
+                headers: { Authorization: `Bearer ${profile.token}` }
+            });
         promise.then(answer => {
             setTasksArray(answer.data);
         })
@@ -38,11 +44,17 @@ export default function TodayPage() {
 
     function handleSelection({ id, done }) {
         if (!done) {
-            const select = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`, true, config);
+            const select = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`, {},
+                {
+                    headers: { Authorization: `Bearer ${profile.token}` }
+                });
             select.then(renderPage);
             select.catch(answer => console.log(answer.response));
         } else {
-            const deselect = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/uncheck`, false, config);
+            const deselect = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/uncheck`, {},
+                {
+                    headers: { Authorization: `Bearer ${profile.token}` }
+                });
             deselect.then(renderPage);
         }
     }
