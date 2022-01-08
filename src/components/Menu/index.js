@@ -1,13 +1,40 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useContext, useEffect } from "react";
 import MyContext from "../../MyContext";
+import { Link } from "react-router-dom";
 import { Nav } from "./style";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import "react-circular-progressbar/dist/styles.css";
 
 export default function Menu() {
 
-    const { progress } = useContext(MyContext);
+    const { profile, progress, setProgress } = useContext(MyContext);
+
+    const config = {
+        headers: { Authorization: `Bearer ${profile.token}` }
+    }
+
+    useEffect(() => {
+        renderPage();
+    }, []);
+
+    function renderPage() {
+        const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config);
+        promise.then(answer => {
+            setProgress(() => progressCalculation(answer.data));
+        })
+    }
+
+    function progressCalculation(tasksArray) {
+        let cont = 0;
+        for (let i = 0; i < tasksArray.length; i++) {
+            if (tasksArray[i].done) {
+                cont++;
+            }
+        }
+        const percentage = ((cont * 100) / tasksArray.length).toFixed();
+        return percentage;
+    }
 
     return (
         <Nav>
