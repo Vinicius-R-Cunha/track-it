@@ -1,6 +1,5 @@
 import axios from "axios";
-import { useState } from "react/cjs/react.development";
-import { useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import MyContext from "../../MyContext";
 import Header from "../Header";
 import Menu from "../Menu";
@@ -19,7 +18,7 @@ export default function TodayPage() {
         'Sexta',
         'Sábado'
     ]
-    const { profile, progress, setProgress } = useContext(MyContext);
+    const { profile, progress } = useContext(MyContext);
     const [tasksArray, setTasksArray] = useState();
 
     const config = {
@@ -30,24 +29,11 @@ export default function TodayPage() {
         renderPage();
     }, []);
 
-
     function renderPage() {
         const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config);
         promise.then(answer => {
             setTasksArray(answer.data);
-            setProgress(() => progressCalculation(answer.data));
         })
-    }
-
-    function progressCalculation(tasksArray) {
-        let cont = 0;
-        for (let i = 0; i < tasksArray.length; i++) {
-            if (tasksArray[i].done) {
-                cont++;
-            }
-        }
-        const percentage = ((cont * 100) / tasksArray.length).toFixed();
-        return percentage;
     }
 
     function handleSelection({ id, done }) {
