@@ -70,7 +70,7 @@ export default function History() {
                 <p className="history-title">Histórico</p>
 
                 <Calendar
-                    tileClassName={({ date }) => (handleColors(date) === 'green') ? handleColors(date) : handleColors(date)}
+                    tileClassName={({ date }) => handleColors(date)}
                     calendarType={'US'}
                 />
             </HistoryPage>
