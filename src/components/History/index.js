@@ -5,23 +5,29 @@ import Menu from "../Menu";
 import { HistoryPage } from "./style";
 import axios from "axios";
 import MyContext from "../../MyContext";
+import { useNavigate } from "react-router-dom";
 
 export default function History() {
+
+    const navigate = useNavigate();
 
     const { profile } = useContext(MyContext);
 
     const [history, setHistory] = useState();
 
-    const config = {
-        headers: { Authorization: `Bearer ${profile.token}` }
-    }
-
     useEffect(() => {
-        renderPage();
+        if (profile !== null) {
+            renderPage();
+        } else {
+            navigate('/');
+        }
     }, []);
 
     function renderPage() {
-        const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/history/daily", config);
+        const promise = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/history/daily",
+            {
+                headers: { Authorization: `Bearer ${profile.token}` }
+            });
         promise.then(answer => setHistory(answer.data));
     }
 
