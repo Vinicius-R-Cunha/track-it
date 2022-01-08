@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { render } from "react-dom";
 import Loader from "react-loader-spinner";
 import MyContext from "../../MyContext";
 import Header from "../Header";
