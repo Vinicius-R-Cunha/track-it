@@ -16,8 +16,23 @@ export default function App() {
     const [profile, setProfile] = useState(savedProfile);
     const [progress, setProgress] = useState(0);
 
+    function progressCalculation(tasksArray) {
+        if (tasksArray.length === 0) {
+            return 0;
+        }
+
+        let cont = 0;
+        for (let i = 0; i < tasksArray.length; i++) {
+            if (tasksArray[i].done) {
+                cont++;
+            }
+        }
+        const percentage = ((cont * 100) / tasksArray.length).toFixed();
+        return percentage;
+    }
+
     return (
-        <MyContext.Provider value={{ profile, setProfile, progress, setProgress }}>
+        <MyContext.Provider value={{ profile, setProfile, progress, setProgress, progressCalculation }}>
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Login />} />

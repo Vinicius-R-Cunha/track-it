@@ -10,7 +10,7 @@ export default function Menu() {
 
     const navigate = useNavigate();
 
-    const { profile, progress, setProgress } = useContext(MyContext);
+    const { profile, progress, setProgress, progressCalculation } = useContext(MyContext);
 
     useEffect(() => {
         if (profile !== null) {
@@ -30,20 +30,7 @@ export default function Menu() {
         })
     }
 
-    function progressCalculation(tasksArray) {
-        if (tasksArray.length === 0) {
-            return 0;
-        }
 
-        let cont = 0;
-        for (let i = 0; i < tasksArray.length; i++) {
-            if (tasksArray[i].done) {
-                cont++;
-            }
-        }
-        const percentage = ((cont * 100) / tasksArray.length).toFixed();
-        return percentage;
-    }
 
     return (
         <Nav>
