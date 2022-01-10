@@ -76,9 +76,6 @@ const HistoryPage = styled.div`
 
             border-radius: 50%;
 
-            margin: 0 3.937px;
-
-            flex-basis: initial !important;
             max-width: none !important;
         }
 
