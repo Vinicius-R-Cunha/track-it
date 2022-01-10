@@ -107,7 +107,9 @@ export default function HabitsPage() {
 
     if (!habitsArray) {
         return (
-            <></>
+            <div className="full-screen">
+                <Loader type="TailSpin" color="#126BA5" height={150} width={150} />
+            </div>
         );
     }
 
