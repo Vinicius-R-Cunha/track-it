@@ -35,6 +35,9 @@ const Task = styled.div`
     box-sizing: border-box;
     border-radius: 7px;
 
+    opacity:${props => props.loading && 0.4};
+
+
     .task-name {
         font-size: 20px;
         line-height: 25px;

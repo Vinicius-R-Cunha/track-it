@@ -21,7 +21,7 @@ export default function TodayPage() {
         'Sexta',
         'Sábado'
     ]
-    const { profile, progress } = useContext(MyContext);
+    const { profile, progress, setProgress, progressCalculation } = useContext(MyContext);
     const [tasksArray, setTasksArray] = useState();
 
     useEffect(() => {
@@ -38,6 +38,7 @@ export default function TodayPage() {
                 headers: { Authorization: `Bearer ${profile.token}` }
             });
         promise.then(answer => {
+            setProgress(() => progressCalculation(answer.data));
             setTasksArray(answer.data);
         })
     }
@@ -48,14 +49,18 @@ export default function TodayPage() {
                 {
                     headers: { Authorization: `Bearer ${profile.token}` }
                 });
-            select.then(renderPage);
+            select.then(() => {
+                renderPage();
+            });
             select.catch(answer => console.log(answer.response));
         } else {
             const deselect = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/uncheck`, {},
                 {
                     headers: { Authorization: `Bearer ${profile.token}` }
                 });
-            deselect.then(renderPage);
+            deselect.then(() => {
+                renderPage();
+            });
         }
     }
 
