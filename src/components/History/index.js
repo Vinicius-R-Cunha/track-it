@@ -6,10 +6,10 @@ import { HistoryPage, ColorsGuide } from "./style";
 import axios from "axios";
 import MyContext from "../../MyContext";
 import { useNavigate, useParams } from "react-router-dom";
+import Loader from "react-loader-spinner";
 
 export default function History() {
 
-    const { idHistorico } = useParams();
     const navigate = useNavigate();
 
     const { profile, progressCalculation } = useContext(MyContext);
@@ -81,7 +81,9 @@ export default function History() {
 
     if (!history) {
         return (
-            <></>
+            <div className="full-screen">
+                <Loader type="TailSpin" color="#126BA5" height={150} width={150} />
+            </div>
         );
     }
 

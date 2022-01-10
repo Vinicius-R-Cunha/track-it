@@ -7,6 +7,7 @@ import { TodayDiv, Task, CheckBox, Progress } from "./style";
 import dayjs from "dayjs";
 import check from "../../assets/Vector.png";
 import { useNavigate } from "react-router-dom";
+import Loader from "react-loader-spinner";
 
 export default function TodayPage() {
 
@@ -66,7 +67,9 @@ export default function TodayPage() {
 
     if (!tasksArray) {
         return (
-            <></>
+            <div className="full-screen">
+                <Loader type="TailSpin" color="#126BA5" height={150} width={150} />
+            </div>
         );
     }
 
