@@ -11,8 +11,8 @@ export default function SingleHistoryPage() {
     const navigate = useNavigate();
 
     const { idHistorico } = useParams();
-    const { progress } = useContext(MyContext);
     const historyDay = JSON.parse(localStorage.getItem('history'));
+    const dayProgress = JSON.parse(localStorage.getItem('day-progress'));
 
     useEffect(() => {
         if (historyDay.day !== idHistorico.replaceAll('-', '/')) {
@@ -26,7 +26,7 @@ export default function SingleHistoryPage() {
             <Header />
             <SingleHistoryContainer>
                 <p className="single-history-title">Histórico, dia {historyDay.day}</p>
-                <p className="progress-text">Nesse dia você completou os seguintes hábitos:</p>
+                <p className="progress-text">Nesse dia você completou <span>{dayProgress}%</span> dos seus hábitos:</p>
 
                 {historyDay.habits.map(habit => {
                     return (

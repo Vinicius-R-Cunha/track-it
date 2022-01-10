@@ -2,7 +2,7 @@ import Calendar from "react-calendar";
 import React, { useContext, useEffect, useState } from "react";
 import Header from "../Header";
 import Menu from "../Menu";
-import { HistoryPage } from "./style";
+import { HistoryPage, ColorsGuide } from "./style";
 import axios from "axios";
 import MyContext from "../../MyContext";
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,7 +12,7 @@ export default function History() {
     const { idHistorico } = useParams();
     const navigate = useNavigate();
 
-    const { profile } = useContext(MyContext);
+    const { profile, progressCalculation } = useContext(MyContext);
 
     const [history, setHistory] = useState();
 
@@ -46,28 +46,25 @@ export default function History() {
             const isInHistory = (formatDate(date) === history[i].day && formatDate(date) !== formatDate(new Date));
             if (!isInHistory) {
                 continue;
-            } else if (dateWasComplete(history[i])) {
-                return 'green';
-            } else {
+            } else if (progressCalculation(history[i].habits) >= 0 && progressCalculation(history[i].habits) < 15) {
                 return 'red';
+            } else if (progressCalculation(history[i].habits) < 25) {
+                return 'orange';
+            } else if (progressCalculation(history[i].habits) < 50) {
+                return 'light-orange';
+            } else if (progressCalculation(history[i].habits) < 75) {
+                return 'light-green';
+            } else if (progressCalculation(history[i].habits) <= 100) {
+                return 'green';
             }
         }
-    }
-
-    function dateWasComplete(date) {
-        let isDone = true;
-        for (let i = 0; i < date.habits.length; i++) {
-            if (!date.habits[i].done) {
-                isDone = false;
-            }
-        }
-        return isDone;
     }
 
     function handleClick(date) {
         const index = clickedDayInHistory(date);
         if (index !== null) {
             localStorage.setItem('history', JSON.stringify(history[index]));
+            localStorage.setItem('day-progress', JSON.stringify(progressCalculation(history[index].habits)));
             navigate(`/historico/${history[index].day.replaceAll('/', '-')}`);
         }
     }
@@ -99,6 +96,22 @@ export default function History() {
                     calendarType={'US'}
                     onClickDay={e => handleClick(e)}
                 />
+
+                <ColorsGuide>
+                    <p className="guide">Legenda:</p>
+                    <div>
+                        <div className="circle-guide red"></div>
+                        -15%
+                        <div className="circle-guide orange"></div>
+                        +15%
+                        <div className="circle-guide light-orange"></div>
+                        +25%
+                        <div className="circle-guide light-green"></div>
+                        +50%
+                        <div className="circle-guide green"></div>
+                        +75%
+                    </div>
+                </ColorsGuide>
             </HistoryPage>
             <Menu />
         </>
