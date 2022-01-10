@@ -21,6 +21,8 @@ const HistoryPage = styled.div`
 
         background: white;
 
+        margin-bottom: 15px;
+
         * {
             border: hidden;
         }
@@ -124,10 +126,71 @@ const HistoryPage = styled.div`
             background: #8CC655;
         }
 
+        .light-green {
+            background: #a6e69c;
+        }
+
+        .light-orange {
+            background: #ffd324;
+        }
+
+        .orange {
+            background: #f7b61e;
+        }
+        
+        .red {
+            background: #EA5766;
+        }
+    }
+
+    
+`
+
+const ColorsGuide = styled.div`
+
+    font-size: 11px;
+    color: #666666;
+
+    .guide {
+        font-size: 13px;
+        color: #126BA5;
+        margin-bottom: 8px;
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+
+        .circle-guide {
+            width: 20px;
+            height: 20px;
+
+            margin-left: 8px;
+            margin-right: 5px;
+
+            border-radius: 50%;
+        }
+
+        .green {
+            background: #8CC655;
+        }
+
+        .light-green {
+            background: #a6e69c;
+        }
+
+        .light-orange {
+            background: #ffd324;
+        }
+
+        .orange {
+            background: #f7b61e;
+        }
+        
         .red {
             background: #EA5766;
         }
     }
 `
 
-export { HistoryPage }
+export { HistoryPage, ColorsGuide }
