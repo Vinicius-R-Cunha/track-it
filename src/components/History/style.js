@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const HistoryPage = styled.div`
-    padding: 96px 20px 0 20px;
+    padding: 96px 20px 105px 20px;
 
     .history-title {
         font-size: 23px;
