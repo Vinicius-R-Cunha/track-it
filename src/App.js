@@ -8,6 +8,7 @@ import MyContext from './MyContext';
 import { useState } from 'react';
 import './styles/reset.css';
 import './styles/style.css';
+import SingleHistoryPage from './components/SingleHistoryPage';
 
 export default function App() {
 
@@ -40,6 +41,7 @@ export default function App() {
                     <Route path='/hoje' element={<TodayPage />} />
                     <Route path='/habitos' element={<HabitsPage />} />
                     <Route path='/historico' element={<History />} />
+                    <Route path='/historico/:idHistorico' element={<SingleHistoryPage />} />
                 </Routes>
             </BrowserRouter>
         </MyContext.Provider>
