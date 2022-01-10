@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const HistoryPage = styled.div`
-    padding: 96px 20px 0 20px;
+    padding: 96px 20px 105px 20px;
 
     .history-title {
         font-size: 23px;
@@ -13,8 +13,9 @@ const HistoryPage = styled.div`
 
     .react-calendar {
         width: 335px;
-        height: 402px;
-
+        
+        padding-bottom: 8px;
+        
         border-radius: 10px;
         border: hidden;
 
@@ -25,7 +26,8 @@ const HistoryPage = styled.div`
         }
 
         .react-calendar__month-view__days {
-            height: 315px;
+            max-height: 315px;
+            gap: 8.5px;
         }
 
         .react-calendar__navigation {
@@ -76,10 +78,8 @@ const HistoryPage = styled.div`
 
             border-radius: 50%;
 
-            margin: 0 3.937px;
-
-            flex-basis: initial !important;
             max-width: none !important;
+            flex-basis: initial !important;
         }
 
         .react-calendar__tile:disabled {
