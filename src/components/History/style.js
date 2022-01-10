@@ -26,6 +26,7 @@ const HistoryPage = styled.div`
 
         .react-calendar__month-view__days {
             height: 315px;
+            gap: 8.5px;
         }
 
         .react-calendar__navigation {
@@ -77,6 +78,7 @@ const HistoryPage = styled.div`
             border-radius: 50%;
 
             max-width: none !important;
+            flex-basis: initial !important;
         }
 
         .react-calendar__tile:disabled {
