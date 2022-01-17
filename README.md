@@ -3,6 +3,9 @@
 ## About
 The ideia of this website is to have a habits tracking website.
 
+## Link
+https://cineflex-xi.vercel.app/
+
 ## Technologies
 The following tools and frameworks were used in the construction of the project:<br>
 <p>
@@ -27,7 +30,7 @@ $ npm i
 
 ### Run the front-end with
 ```bash
-npm start
+$ npm start
 ```
 
 ### Or you can build the project running
