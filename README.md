@@ -1,5 +1,8 @@
 # TrackIt
 
+## About
+The ideia of this website is to have a habits tracking website.
+
 ## Technologies
 The following tools and frameworks were used in the construction of the project:<br>
 <p>
@@ -13,7 +16,7 @@ The following tools and frameworks were used in the construction of the project:
 
 ### Clone this Repository
 ```bash
-$ git clone https://github.com/theodro1/TrackIt.git
+$ git clone https://github.com/Vinicius-R-Cunha/track-it.git
 ```
 
 ### Install dependencies
