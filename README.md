@@ -21,6 +21,7 @@ The main purpose of this website was to develop login/sign up knowledges.
 ## Technologies
 The following tools and frameworks were used in the construction of the project:<br>
 <p>
+  <img style='margin: 5px;' src='https://img.shields.io/badge/dayjs%20-%2320232a.svg?&style=for-the-badge&color=green'>
   <img style='margin: 5px;' src='https://img.shields.io/badge/styled-components%20-%2320232a.svg?&style=for-the-badge&color=b8679e&logo=styled-components&logoColor=%3a3a3a'>
   <img style='margin: 5px;' src='https://img.shields.io/badge/axios%20-%2320232a.svg?&style=for-the-badge&color=informational'>
   <img style='margin: 5px;' src="https://img.shields.io/badge/react-app%20-%2320232a.svg?&style=for-the-badge&color=60ddf9&logo=react&logoColor=%2361DAFB"/>
@@ -34,6 +35,11 @@ The following tools and frameworks were used in the construction of the project:
 $ git clone https://github.com/Vinicius-R-Cunha/track-it.git
 ```
 
+### Access the directory where you cloned it
+```bash
+$ cd track-it
+```
+
 ### Install dependencies
 
 ```bash
@@ -45,10 +51,4 @@ $ npm i
 $ npm start
 ```
 
-### Or you can build the project running
-
-```bash
-$ npm run build
-```
-
-### And then access http://localhost:3000 on your browser
+### This command will open your favorite browser and access http://localhost:3000 by default
