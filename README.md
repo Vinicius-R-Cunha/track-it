@@ -1,5 +1,5 @@
 # TrackIt
-A mainly mobile habits tracking app written in React that allows you to improve your discipline! You can set your habits and the days of the week you plan to do them.
+A mainly mobile front-end habits tracking app written in React that allows you to improve your discipline! You can set your habits and the days of the week you plan to do them.
 
 ![TrackIt](https://user-images.githubusercontent.com/92492685/150709730-a4cacecd-76c4-4afe-9b87-67c7541b9127.gif)
 
